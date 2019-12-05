@@ -1,5 +1,6 @@
 DirectoryIndex index.php
 
+    Header set Access-Control-Allow-Origin "*"
 
     RewriteEngine On
 

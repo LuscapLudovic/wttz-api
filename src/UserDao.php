@@ -22,20 +22,20 @@ class UserDao
     }
 
     public function findAll()
-    {
-        $sql = "SELECT id, username FROM USER";
-        $result = $this->getDb()->fetchAll($sql);
-        $entities = array();
-        foreach ($result as $row){
-            $id = $row['id'];
-            $entities[$id] = $this->buildDomainObject($row);
-        }
-        return $entities;
+{
+    $sql = "SELECT id, username, team_id FROM USER";
+    $result = $this->getDb()->fetchAll($sql);
+    $entities = array();
+    foreach ($result as $row){
+        $id = $row['id'];
+        $entities[$id] = $this->buildDomainObject($row);
     }
+    return $entities;
+}
 
     public function findById($id)
     {
-        $sql = "SELECT id, username FROM USER WHERE id=?";
+        $sql = "SELECT id, username, team_id FROM USER WHERE id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if($row){
@@ -47,13 +47,31 @@ class UserDao
 
     public function connexion($username, $password)
     {
-        $sql = "SELECT username FROM USER WHERE username=? AND password=?";
+        $sql = "SELECT username, team_id FROM USER WHERE username=? AND password=?";
         $row = $this->getDb()->fetchAssoc($sql, array($username, $password));
 
         if($row){
             return true;
         } else {
             throw new \Exception("nom de commpte ou mot de passe incorrect");
+        }
+    }
+
+    public function save(User $user)
+    {
+        $userData = array(
+            'username' => $user->getUsername(),
+            'password' => $user->getPassword(),
+            'team_id' => $user->getTeam()
+        );
+
+        // TODO CHECK
+        if ($user->getId()) {
+            $this->getDb()->update('user', $userData, array('id' => $user->getId()));
+        } else {
+            $this->getDb()->insert('user', $userData);
+            $id = $this->getDb()->lastInsertId();
+            $user->setId($id);
         }
     }
 
@@ -71,6 +89,7 @@ class UserDao
         $user = new User();
         $user->setId($row['id']);
         $user->setUsername($row['username']);
+        $user->setTeam($row['team_id']);
 
         return $user;
     }
