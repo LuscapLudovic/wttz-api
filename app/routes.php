@@ -58,6 +58,7 @@ $app->get('/api/message', function() use ($app) {
     /** @var Message $message */
     foreach ($messages as $message){
         $responseData[] = array(
+            'id' => $message->getId(),
             'text' => $message->getText(),
             'posted_at' => $message->getPostedAt(),
             'user_id' => array(
@@ -90,6 +91,20 @@ $app->get('/api/user/{id}', function ($id, Request $request) use ($app) {
     );
     return $app->json($responseData);
 })->bind('api_user');
+
+$app->get('/api/user/{id}/message', function ($id, Request $request) use ($app){
+    $message = $app ['dao.message']->findUserMessage($id);
+    if(!isset($message)){
+        $app->abort(404, "L'utilisateur n'a pas de message");
+    }
+
+    $responseData = array(
+        'id' => $message->getId(),
+        'text' => $message->getText(),
+        'posted_at' => $message->getPostedAt()
+    );
+    return $app->json($responseData);
+})->bind('api_message_user');
 
 $app->get('/api/team/{id}', function($id, Request $request) use ($app) {
     /** @var Team $team */

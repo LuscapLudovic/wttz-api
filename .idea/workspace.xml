@@ -4,6 +4,7 @@
     <list default="true" id="05279efa-f3e9-4897-9323-6e0e63da8cf2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MessageDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MessageDao.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +89,7 @@
       <workItem from="1575968138149" duration="3188000" />
       <workItem from="1575997827045" duration="31000" />
       <workItem from="1578469095203" duration="9698000" />
-      <workItem from="1578485300909" duration="2994000" />
+      <workItem from="1578485300909" duration="5666000" />
     </task>
     <servers />
   </component>
@@ -107,5 +108,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/MessageDao.php</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
