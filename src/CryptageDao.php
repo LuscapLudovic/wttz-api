@@ -44,4 +44,16 @@ class CryptageDao
             throw new \Exception("pas de user avec cette id : " .$id);
         }
     }
+
+    private function buildDomainObject($row)
+    {
+        $cryptage = new Cryptage();
+        $teamDao = new TeamDao($this->db);
+
+        $cryptage->setId($row["id"]);
+        $cryptage->setText($row["text"]);
+        $cryptage->setTeam($teamDao->findById($row["team_id"]));
+
+        return $cryptage;
+    }
 }
