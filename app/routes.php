@@ -1,5 +1,6 @@
 <?php
 
+use SilexApi\TeamDao;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use SilexApi\User;
@@ -23,6 +24,7 @@ $app->options("{anything}", function () {
 $app->get('/api/user', function () use ($app) {
     $users = $app['dao.user']->findAll();
     $responseData = array();
+    /** @var User $user */
     foreach ($users as $user){
         $responseData[] = array(
             'id' => $user->getId(),
@@ -40,6 +42,7 @@ $app->get('/api/user', function () use ($app) {
 $app->get('/api/team', function () use ($app) {
     $teams = $app['dao.team']->findAll();
     $responseData = array();
+    /** @var Team $team */
     foreach ($teams as $team){
         $responseData[] = array(
             'id' => $team->getId(),
@@ -89,6 +92,7 @@ $app->get('/api/user/{id}', function ($id, Request $request) use ($app) {
 })->bind('api_user');
 
 $app->get('/api/team/{id}', function($id, Request $request) use ($app) {
+    /** @var Team $team */
     $team = $app['dao.team']->findById($id);
     if(!isset($team)){
         $app->abort(404, "Il n'y a pas de team avec ce nom");
@@ -125,6 +129,7 @@ $app->get('api/message/{id}', function($id, Request $request) use ($app) {
 })->bind('api_message');
 
 $app->post('/api/connexion', function(Request $request) use ($app) {
+    /** @var User $user */
     $user = $app['dao.user']->connexion($request->request->get('username'), $request->request->get('password'));
     if($user){
         $session = array(
