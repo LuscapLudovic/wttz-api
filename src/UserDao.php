@@ -47,13 +47,13 @@ class UserDao
 
     public function connexion($username, $password)
     {
-        $sql = "SELECT username, team_id FROM USER WHERE username=? AND password=?";
+        $sql = "SELECT id, username, team_id FROM USER WHERE username=? AND password=?";
         $row = $this->getDb()->fetchAssoc($sql, array($username, $password));
 
         if($row){
-            return true;
+            return $this->buildDomainObject($row);
         } else {
-            throw new \Exception("nom de commpte ou mot de passe incorrect");
+            throw new \Exception("nom de compte ou mot de passe incorrect");
         }
     }
 

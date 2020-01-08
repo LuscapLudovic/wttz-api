@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05279efa-f3e9-4897-9323-6e0e63da8cf2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CryptageDao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamDao.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MessageDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MessageDao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserDao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/web/.htaccess" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +86,12 @@
       <workItem from="1575453787642" duration="3246000" />
       <workItem from="1575543166591" duration="136000" />
       <workItem from="1575547822184" duration="5541000" />
+      <workItem from="1575553892302" duration="738000" />
+      <workItem from="1575892369064" duration="3642000" />
+      <workItem from="1575922854074" duration="8304000" />
+      <workItem from="1575968138149" duration="3188000" />
+      <workItem from="1575997827045" duration="31000" />
+      <workItem from="1578469095203" duration="1393000" />
     </task>
     <servers />
   </component>
