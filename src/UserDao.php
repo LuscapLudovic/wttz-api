@@ -90,7 +90,7 @@ class UserDao
         $teamDao = new TeamDao($this->db);
         $user->setId($row['id']);
         $user->setUsername($row['username']);
-        //$user->setTeam($row['libelle']);
+
         $user->setTeam($teamDao->findById($row['team_id']));
         return $user;
     }

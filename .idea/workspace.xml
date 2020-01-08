@@ -4,8 +4,6 @@
     <list default="true" id="05279efa-f3e9-4897-9323-6e0e63da8cf2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MessageDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MessageDao.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TeamDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TeamDao.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UserDao.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserDao.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -90,7 +88,7 @@
       <workItem from="1575922854074" duration="8304000" />
       <workItem from="1575968138149" duration="3188000" />
       <workItem from="1575997827045" duration="31000" />
-      <workItem from="1578469095203" duration="6593000" />
+      <workItem from="1578469095203" duration="8618000" />
     </task>
     <servers />
   </component>

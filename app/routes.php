@@ -27,7 +27,10 @@ $app->get('/api/user', function () use ($app) {
         $responseData[] = array(
             'id' => $user->getId(),
             'username' => $user->getUsername(),
-            'team' => $user->getTeam()
+            'team' => array(
+                'id' => $user->getTeam()->getId(),
+                'libelle' => $user->getTeam()->getLibelle()
+            )
         );
     }
 
@@ -99,6 +102,7 @@ $app->get('/api/team/{id}', function($id, Request $request) use ($app) {
 })->bind('api_team');
 
 $app->get('api/message/{id}', function($id, Request $request) use ($app) {
+    /** @var Message $message */
     $message = $app['dao.message']->findById($id);
     if(!isset($message)){
         $app->abort(404, "Il n'y pas de message avec ce nom");
@@ -108,8 +112,14 @@ $app->get('api/message/{id}', function($id, Request $request) use ($app) {
         'id' => $message->getId(),
         'text' => $message->getText(),
         'posted_at' => $message->getPostedAt(),
-        'user_id' => $message->getUser(),
-        'team_id' => $message->getTeam()
+        'user_id' => array(
+            'id' => $message->getUser()->getId(),
+            'username' => $message->getUser()->getUsername()
+        ),
+        'team_id' => array(
+            'id' => $message->getTeam()->getId(),
+            'libelle' => $message->getTeam()->getLibelle()
+        )
     );
     return $app->json($responseData);
 })->bind('api_message');
