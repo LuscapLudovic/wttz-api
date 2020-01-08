@@ -40,7 +40,7 @@ $app->get('/api/team', function () use ($app) {
     foreach ($teams as $team){
         $responseData[] = array(
             'id' => $team->getId(),
-            'username' => $team->getLibelle()
+            'libelle' => $team->getLibelle()
         );
     }
     return $app->json($responseData);
@@ -49,18 +49,26 @@ $app->get('/api/team', function () use ($app) {
 $app->get('/api/message', function() use ($app) {
     $messages = $app['dao.message']->findAll();
     $responseData = array();
+    /** @var Message $message */
     foreach ($messages as $message){
         $responseData[] = array(
             'text' => $message->getText(),
             'posted_at' => $message->getPostedAt(),
-            'user_id' => $message->getUser(),
-            'team_id' => $message->getTeam()
+            'user_id' => array(
+                'id' => $message->getUser()->getId(),
+                'username' => $message->getUser()->getUsername()
+            ),
+            'team_id' => array(
+                'id' => $message->getTeam()->getId(),
+                'libelle' => $message->getTeam()->getLibelle()
+            )
         );
     }
     return $app->json($responseData);
 })->bind('api_messages');
 
 $app->get('/api/user/{id}', function ($id, Request $request) use ($app) {
+    /** @var User $user */
     $user = $app['dao.user']->findById($id);
     if(!isset($user)){
         $app->abort(404, "L'utilisateur n'existe pas");
@@ -69,7 +77,10 @@ $app->get('/api/user/{id}', function ($id, Request $request) use ($app) {
     $responseData = array(
         'id' => $user->getId(),
         'username' => $user->getUsername(),
-        'team' => $user->getTeam()
+        'team' => array(
+            'id' => $user->getTeam()->getId(),
+            'libelle' => $user->getTeam()->getLibelle()
+        )
     );
     return $app->json($responseData);
 })->bind('api_user');

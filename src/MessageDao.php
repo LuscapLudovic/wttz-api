@@ -74,11 +74,13 @@ class MessageDao
     protected function buildDomainObject($row)
     {
         $message = new Message();
+        $teamDao = new TeamDao($this->db);
+        $userDao = new UserDao($this->db);
         $message->setId($row['id']);
         $message->setText($row['text']);
         $message->setPostedAt($row['posted_at']);
-        $message->setTeam($row['team_id']);
-        $message->setUser($row['user_id']);
+        $message->setTeam($teamDao->findById($row['team_id']));
+        $message->setUser($userDao->findById($row['user_id']));
 
         return $message;
     }

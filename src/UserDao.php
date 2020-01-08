@@ -23,7 +23,7 @@ class UserDao
 
     public function findAll()
 {
-    $sql = "SELECT id, username, team_id FROM USER";
+    $sql = "SELECT user.id, user.username, user.team_id FROM user";
     $result = $this->getDb()->fetchAll($sql);
     $entities = array();
     foreach ($result as $row){
@@ -35,7 +35,7 @@ class UserDao
 
     public function findById($id)
     {
-        $sql = "SELECT id, username, team_id FROM USER WHERE id=?";
+        $sql = "SELECT user.id, user.username, user.team_id FROM user WHERE user.id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if($row){
@@ -47,7 +47,7 @@ class UserDao
 
     public function connexion($username, $password)
     {
-        $sql = "SELECT id, username, team_id FROM USER WHERE username=? AND password=?";
+        $sql = "SELECT id, username, team_id FROM user WHERE username=? AND password=?";
         $row = $this->getDb()->fetchAssoc($sql, array($username, $password));
 
         if($row){
@@ -87,10 +87,11 @@ class UserDao
     protected function buildDomainObject($row)
     {
         $user = new User();
+        $teamDao = new TeamDao($this->db);
         $user->setId($row['id']);
         $user->setUsername($row['username']);
-        $user->setTeam($row['team_id']);
-
+        //$user->setTeam($row['libelle']);
+        $user->setTeam($teamDao->findById($row['team_id']));
         return $user;
     }
 }

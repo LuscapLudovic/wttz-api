@@ -34,9 +34,8 @@ class TeamDao
 
     public function findById($id)
     {
-        $sql = "SELECT id, username FROM TEAM WHERE id=?";
+        $sql = "SELECT id, libelle FROM TEAM WHERE id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
-
         if($row){
             return $this->buildDomainObject($row);
         } else {
@@ -74,7 +73,6 @@ class TeamDao
         $team = new Team();
         $team->setId($row['id']);
         $team->setLibelle($row['libelle']);
-
         return $team;
     }
 }
