@@ -21,6 +21,10 @@ $app['dao.message'] = $app->share(function ($app) {
     return new SilexApi\MessageDao($app['db']);
 });
 
+$app['dao.cryptage'] = $app->share(function ($app) {
+    return new SilexApi\CryptageDao($app['db']);
+});
+
 // Register JSON data decoder for JSON requests
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
