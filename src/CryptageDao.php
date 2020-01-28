@@ -41,7 +41,19 @@ class CryptageDao
         if($row){
             return $this->buildDomainObject($row);
         } else {
-            throw new \Exception("pas de user avec cette id : " .$id);
+            throw new \Exception("pas de cryptage avec cette id : " .$id);
+        }
+    }
+
+    public function cryptage($id)
+    {
+        $sql = "SELECT id, text, team_id FROM CRYPTAGE WHERE team_id = ?";
+        $row = $this->getDb()->fetchAssoc($sql, array($id));
+
+        if($row){
+            return $this->buildDomainObject($row);
+        } else {
+            throw new \Exception("pas de cryptage pour cette team : ".$id);
         }
     }
 

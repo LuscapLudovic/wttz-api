@@ -120,6 +120,32 @@ $app->get('/api/team/{id}', function($id, Request $request) use ($app) {
     return $app->json($responseData);
 })->bind('api_team');
 
+$app->get('/api/cryptage/{id}', function($id, Request $request) use ($app){
+    /** @var Cryptage $cryptage */
+    $cryptage = $app['dao.cryptage']->findById($id);
+    if(!isset($cryptage)){
+        $app->abort(404, "Pas de cryptage pour l'animal");
+    }
+
+    $responseData = array(
+        'text' => $cryptage->getText()
+    );
+    return $app->json($responseData);
+})->bind('api_cryptage');
+
+$app->get('/api/cryptage/team/{id}', function($id, Request $request) use ($app){
+    /** @var Cryptage $cryptage */
+    $cryptage = $app['dao.cryptage']->cryptage($id);
+    if(!isset($cryptage)){
+        $app->abort(404, "Pas de cryptage pour l'animal");
+    }
+
+    $responseData = array(
+        'text' => $cryptage->getText()
+    );
+    return $app->json($responseData);
+})->bind('api_cryptage_team');
+
 $app->get('api/message/{id}', function($id, Request $request) use ($app) {
     /** @var Message $message */
     $message = $app['dao.message']->findById($id);
@@ -195,19 +221,9 @@ $app->post('/api/team/create', function(Request $request) use ($app) {
 })->bind('api_team_add');
 
 $app->post('api/message/create', function(Request $request) use ($app) {
-    /*if(!$request->request->has('text')){
-        return $app->json('Missing parameter: text', 400);
-    }
-    if(!$request->request->has('user_id')){
-        return $app->json('Missing parameter: user_id', 400);
-    }
-    if(!$request->request->has('text')){
-        return $app->json('Missing parameter: team_id', 400);
-    }*/
 
     $message = new Message();
     $message->setText($request->request->get('text'));
-    //$message->setPostedAt($request->request->get('posted_at'));
     $message->setTeam($request->request->get('team_id'));
     $message->setUser($request->request->get('user_id'));
     $app['dao.message']->save($message);
