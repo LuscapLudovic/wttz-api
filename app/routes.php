@@ -148,6 +148,7 @@ $app->post('/api/connexion', function(Request $request) use ($app) {
     $user = $app['dao.user']->connexion($request->request->get('username'), $request->request->get('password'));
     if($user){
         $session = array(
+            'id' => $user->getId(),
             'username' => $user->getUsername(),
             'team_id' => $user->getTeam()
         );
