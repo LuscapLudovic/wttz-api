@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 08 jan. 2020 à 09:05
--- Version du serveur :  10.4.6-MariaDB
--- Version de PHP :  7.3.9
+-- Généré le :  mar. 28 jan. 2020 à 11:46
+-- Version du serveur :  10.4.11-MariaDB
+-- Version de PHP :  7.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -39,8 +39,15 @@ CREATE TABLE `cryptage` (
 --
 
 INSERT INTO `cryptage` (`id`, `text`, `team_id`) VALUES
-(1, 'miaou', 1),
-(2, 'atiatio', 3);
+(1, 'brame', 1),
+(2, 'atiatio', 9),
+(3, '⌠⌡⌡⌠⌡⌠', 2),
+(4, 'muura', 3),
+(5, 'tap', 4),
+(6, 'roah', 5),
+(7, 'Ahrrfff', 6),
+(8, 'mun', 7),
+(9, 'fii', 8);
 
 -- --------------------------------------------------------
 
@@ -80,9 +87,15 @@ CREATE TABLE `team` (
 --
 
 INSERT INTO `team` (`id`, `libelle`) VALUES
-(1, 'Chat'),
-(2, 'Chien'),
-(3, 'Renard');
+(1, 'cerf'),
+(2, 'giraff'),
+(3, 'hippopotame'),
+(4, 'lapin'),
+(5, 'lion'),
+(6, 'ours'),
+(7, 'panda'),
+(8, 'raton-laveur'),
+(9, 'renard');
 
 -- --------------------------------------------------------
 
@@ -104,7 +117,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `team_id`) VALUES
 (1, 'NerfQiyana', '123456', 1),
 (2, 'Inuarashi', '654321', 2),
-(3, 'user', 'test', 1);
+(3, 'user', 'test', 1),
+(5, 'syldup', 'a', 9),
+(6, 'Froufour', '556', 8);
 
 --
 -- Index pour les tables déchargées
@@ -147,7 +162,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `cryptage`
 --
 ALTER TABLE `cryptage`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `message`
@@ -159,13 +174,13 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT pour la table `team`
 --
 ALTER TABLE `team`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Contraintes pour les tables déchargées
