@@ -197,9 +197,12 @@ $app->post('/api/user/create', function (Request $request) use ($app) {
     $app['dao.user']->save($user);
 
     $responseData = array(
-        //'id' => $user->getId(),
+        'id' => $user->getId(),
         'username' => $user->getUsername(),
-        'password' => $user->getPassword()
+        'team_id' => array(
+            'id' => $user->getTeam()->getId(),
+            'libelle' => $user->getTeam()->getLibelle()
+        )
     );
 
     return $app->json($responseData, 201);
