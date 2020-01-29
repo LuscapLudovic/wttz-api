@@ -22,7 +22,7 @@ class MessageDao
 
     public function findAll()
     {
-        $sql = "SELECT * FROM MESSAGE";
+        $sql = "SELECT * FROM MESSAGE ORDER BY posted_at DESC";
         $result = $this->getDb()->fetchAll($sql);
         $entities = array();
         foreach ($result as $row){
