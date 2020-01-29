@@ -176,7 +176,7 @@ $app->post('/api/connexion', function(Request $request) use ($app) {
         $session = array(
             'id' => $user->getId(),
             'username' => $user->getUsername(),
-            'team_id' => $user->getTeam()
+            'team_id' => $user->getTeam()->getId()
         );
     }
     return $app->json($session);
