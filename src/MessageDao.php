@@ -44,14 +44,22 @@ class MessageDao
         }
     }
 
-    public function findUserMessage($id)
+    public function findUserMessages($id)
     {
         $sql = "SELECT * FROM message WHERE message.user_id =?";
-        $row = $this->getDb()->fetchAssoc($sql, array($id));
-
-        if($row){
-            return $this->buildDomainObject($row);
-        } else {
+        $result = $this->getDb()->fetchAll($sql, array($id));
+        $messages = array();
+        if($result)
+        {
+            foreach ($result as $row)
+            {
+                $id = $row['id'];
+                $messages[$id] = $this->buildDomainObject($row);
+            }
+            return $messages;
+        }
+        else
+        {
             throw new \Exception("pas de message pour ce user : ". $id);
         }
     }

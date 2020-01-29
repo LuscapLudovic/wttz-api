@@ -53,23 +53,26 @@ $app->get('/api/team', function () use ($app) {
 })->bind('api_teams');
 
 $app->get('/api/message', function() use ($app) {
+    //$user = $app['dao.user']->findById();
     $messages = $app['dao.message']->findAll();
     $responseData = array();
     /** @var Message $message */
     foreach ($messages as $message){
-        $responseData[] = array(
-            'id' => $message->getId(),
-            'text' => $message->getText(),
-            'posted_at' => $message->getPostedAt(),
-            'user_id' => array(
-                'id' => $message->getUser()->getId(),
-                'username' => $message->getUser()->getUsername()
-            ),
-            'team_id' => array(
-                'id' => $message->getTeam()->getId(),
-                'libelle' => $message->getTeam()->getLibelle()
-            )
-        );
+        //if($message->getTeam()->getId() == $user->getTeam()->getId()){
+            $responseData[] = array(
+                'id' => $message->getId(),
+                'text' => $message->getText(),
+                'posted_at' => $message->getPostedAt(),
+                'user_id' => array(
+                    'id' => $message->getUser()->getId(),
+                    'username' => $message->getUser()->getUsername()
+                ),
+                'team_id' => array(
+                    'id' => $message->getTeam()->getId(),
+                    'libelle' => $message->getTeam()->getLibelle()
+                )
+            );
+        //}
     }
     return $app->json($responseData);
 })->bind('api_messages');
@@ -93,16 +96,16 @@ $app->get('/api/user/{id}', function ($id, Request $request) use ($app) {
 })->bind('api_user');
 
 $app->get('/api/user/{id}/message', function ($id, Request $request) use ($app){
-    $message = $app ['dao.message']->findUserMessage($id);
-    if(!isset($message)){
-        $app->abort(404, "L'utilisateur n'a pas de message");
+    /** @var Message[] $messages */
+    $messages = $app ['dao.message']->findUserMessages($id);
+    $responseData = array();
+    foreach ($messages as $message) {
+        $responseData[] = array(
+            'id' => $message->getId(),
+            'text' => $message->getText(),
+            'posted_at' => $message->getPostedAt()
+        );
     }
-
-    $responseData = array(
-        'id' => $message->getId(),
-        'text' => $message->getText(),
-        'posted_at' => $message->getPostedAt()
-    );
     return $app->json($responseData);
 })->bind('api_message_user');
 
